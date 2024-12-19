@@ -1,6 +1,6 @@
 # Atlantis Azure Devops check PR approvals
 
-[Atlantis](https://www.runatlantis.io) is a Terraform Pull Request Automation, pretty everybody in your organization can modify terraform code and run plan and apply, that introduce some security/authorization problems that must be properly addressed.  
+[Atlantis](https://www.runatlantis.io) is a Terraform Pull Request Automation platform, pretty everybody in your organization can modify terraform code and run plan and apply, that introduce some security/authorization problems that must be properly addressed.  
 You can make the PR require an approvals by creating a server side configuration with *approved* requirements:
 ```
   plan_requirements: [approved]
@@ -8,7 +8,7 @@ You can make the PR require an approvals by creating a server side configuration
 ```
 but *anybody* who can access and contribute to the repo, can approve it and this will fullfill the atlantis requirements.  
 If you are using atlantis+github you can require the approve of a specific group with the [--gh-team-allowlist option](https://www.runatlantis.io/docs/server-configuration.html#gh-team-allowlist), that's a little better but this parameter is not present on atlantis for azure devops.  
-I've created a shell script that can connect to azure devops and check if the PR has been approved by a member of one or more groups, so you can make the PR require an *approve* by the devops/infrastructure before the code can be executed in the plan or apply phase.  
+I've created a shell script that connect to azure devops and check if the PR has been approved by a member of one or more groups, so you can make the PR require an *approve* by the devops/infrastructure team before the code can be executed in the plan or apply phase.  
 You should make this script invoked by atlantis during a custom workflow, this will reject a PR that has not been approved by a member of one or more specific groups.  
 
 ## System Requirements
